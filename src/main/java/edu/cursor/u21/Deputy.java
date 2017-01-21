@@ -1,6 +1,5 @@
 package edu.cursor.u21;
 
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +17,7 @@ public class Deputy {
     private boolean isGrafter;
     private boolean isUnderNABU;
     private boolean isUnderProsecutor;
+    private boolean isHeadOfParty = false;
 
     public Deputy() {
     }
