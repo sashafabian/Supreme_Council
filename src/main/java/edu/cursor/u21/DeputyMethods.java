@@ -1,5 +1,8 @@
 package edu.cursor.u21;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by O.Kociuta on 20.01.2017.
  */
@@ -40,5 +43,60 @@ public class DeputyMethods implements DeputyInterface {
                 } else throw new IllegalStateException("There is no head of Party. P.S. you go to jail)) ");
             }
         }
+    }
+
+    public void statisticsOfBribes(HashSet<Deputy> regions, HashSet<Deputy> motherland, HashSet<Deputy> radicals) {
+        Set<Deputy> stat;
+        boolean a = true;
+        int key;
+        while (a)
+            System.out.println("Enter number of party to print statistics:\n1-partyOfRegions\2-partyOfMotherLand\n3-partyOfRadicals");
+            key = Utils.scanInt();
+        switch (key) {
+            case 1:
+                stat = regions;
+                a = false;
+                break;
+            case 2:
+                stat = motherland;
+                a = false;
+                break;
+            case 3:
+                stat = radicals;
+                a = false;
+                break;
+            default:
+                System.out.println("Wrong choice, repeat:");
+                break;
+        }
+        for (Deputy deputat : stat) {
+            System.out.println("Deputy " + deputat.getName() + " - " + deputat.getBribe() + " UAH");
+        }
+    }
+
+    public HashSet<Deputy> deleteDeputy(HashSet<Deputy> deputy) {
+        System.out.println("List of deputy to delete, enter surname from this list:");
+        for (Deputy dep:deputy) {
+            if (dep.isUnderNABU()||dep.isUnderProsecutor())
+                System.out.println(dep.getName());
+        }
+        String surname = Utils.scan.next();
+        int i = 0;
+        for (Deputy dep:deputy) {
+            if (surname==dep.getName()) {
+                deputy = voting(surname, deputy);
+                i=1;
+                break;
+            }
+        }
+        if (i==0) System.out.println("No matches, this time they were lucky");
+        return deputy;
+    }
+
+    public HashSet<Deputy> voting(String surname, HashSet<Deputy> deputy){
+
+     //Lytsushyn.Marian
+
+        return deputy;
     }
 }

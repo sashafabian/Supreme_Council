@@ -14,4 +14,15 @@ class Utils {
         }
         return scanner.nextDouble();
     }
+
+    static int scanInt(){
+        Scanner scanner = new Scanner(System.in);
+        while(!scanner.hasNextInt()){
+            System.out.println("Wrong choice, repeat:");
+            scanner.nextLine();
+        }
+        return scanner.nextInt();
+    }
+
+    public static Scanner scan = new Scanner(System.in);
 }
