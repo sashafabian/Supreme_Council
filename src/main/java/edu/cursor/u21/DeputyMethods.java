@@ -84,7 +84,7 @@ public class DeputyMethods implements DeputyInterface {
         int i = 0;
         for (Deputy dep:deputy) {
             if (surname==dep.getName()) {
-                deputy = voting(surname, deputy);
+                deputy = voting(dep, deputy);
                 i=1;
                 break;
             }
@@ -93,7 +93,7 @@ public class DeputyMethods implements DeputyInterface {
         return deputy;
     }
 
-    public HashSet<Deputy> voting(String surname, HashSet<Deputy> deputy){
+    public HashSet<Deputy> voting(Deputy dep, HashSet<Deputy> deputy){
 
      //Lytsushyn.Marian
 
