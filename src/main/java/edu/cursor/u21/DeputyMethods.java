@@ -51,7 +51,7 @@ public class DeputyMethods implements DeputyInterface {
         int key;
         while (a)
             System.out.println("Enter number of party to print statistics:\n1-partyOfRegions\2-partyOfMotherLand\n3-partyOfRadicals");
-            key = Utils.scanInt();
+        key = Utils.scanInt();
         switch (key) {
             case 1:
                 stat = regions;
@@ -76,27 +76,52 @@ public class DeputyMethods implements DeputyInterface {
 
     public HashSet<Deputy> deleteDeputy(HashSet<Deputy> deputy) {
         System.out.println("List of deputy to delete, enter surname from this list:");
-        for (Deputy dep:deputy) {
-            if (dep.isUnderNABU()||dep.isUnderProsecutor())
+        for (Deputy dep : deputy) {
+            if (dep.isUnderNABU() || dep.isUnderProsecutor())
                 System.out.println(dep.getName());
         }
         String surname = Utils.scan.next();
         int i = 0;
-        for (Deputy dep:deputy) {
-            if (surname==dep.getName()) {
+        for (Deputy dep : deputy) {
+            if (surname == dep.getName()) {
                 deputy = voting(dep, deputy);
-                i=1;
+                i = 1;
                 break;
             }
         }
-        if (i==0) System.out.println("No matches, this time they were lucky");
+        if (i == 0) System.out.println("No matches, this time they were lucky");
         return deputy;
     }
 
-    public HashSet<Deputy> voting(Deputy dep, HashSet<Deputy> deputy){
+    public HashSet<Deputy> voting(Deputy dep, HashSet<Deputy> deputy) {
+        double percentageOftruthfulness = 0.3;
+        double twoThirds = 0.66;
+        double half = 0.5;
+        int golosuvanya = 0;
+        int amountDeputy;
 
-     //Lytsushyn.Marian
-
+        if (dep.isUnderNABU()) {
+            golosuvanya = (int) (Math.random() * amountDeputy * percentageOftruthfulness);
+            System.out.println("Deputy" + dep.getName() + "against him violates case NABU");
+            System.out.println("Voting =" + golosuvanya);
+            if (golosuvanya > twoThirds * amountDeputy) {
+                deputy.remove(dep);
+                System.out.println("Deputy delete from the party");
+            } else {
+                System.out.println("It was not typed required amout of votes");
+            }
+        }
+        if (dep.isUnderProsecutor()) {
+            golosuvanya = (int) (Math.random() * amountDeputy * percentageOftruthfulness);
+            System.out.println("Deputy" + dep.getName() + "against him violates case GPU");
+            System.out.println("Voting =" + golosuvanya);
+            if (golosuvanya > half * amountDeputy) {
+                deputy.remove(dep);
+                System.out.println("Deputy delete from the party!");
+            } else {
+                System.out.println("It was not typed required amout of votes");
+            }
+        }
         return deputy;
     }
 }
