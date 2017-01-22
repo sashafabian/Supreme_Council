@@ -49,7 +49,7 @@ public class DeputyMethods implements DeputyInterface {
         Set<Deputy> stat;
         boolean a = true;
         int key;
-        while (a)
+        while (a){
             System.out.println("Enter number of party to print statistics:\n1-partyOfRegions\2-partyOfMotherLand\n3-partyOfRadicals");
         key = Utils.scanInt();
         switch (key) {
@@ -68,7 +68,7 @@ public class DeputyMethods implements DeputyInterface {
             default:
                 System.out.println("Wrong choice, repeat:");
                 break;
-        }
+        }}
         for (Deputy deputat : stat) {
             System.out.println("Deputy " + deputat.getName() + " - " + deputat.getBribe() + " dollars");
         }
