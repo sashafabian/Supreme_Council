@@ -70,7 +70,7 @@ public class DeputyMethods implements DeputyInterface {
                 break;
         }
         for (Deputy deputat : stat) {
-            System.out.println("Deputy " + deputat.getName() + " - " + deputat.getBribe() + " UAH");
+            System.out.println("Deputy " + deputat.getName() + " - " + deputat.getBribe() + " dollars");
         }
     }
 
