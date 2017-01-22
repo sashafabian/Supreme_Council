@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-@EqualsAndHashCode(exclude = {"bribe", "isGrafter", "isUnderNABU", "isUnderProsecutor"})
+@EqualsAndHashCode(exclude = {"bribe", "isGrafter", "isUnderNABU", "isUnderProsecutor", "HeadOfParty"})
 public class Deputy {
     private String name;
     private String party;
