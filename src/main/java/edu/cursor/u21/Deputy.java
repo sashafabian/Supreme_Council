@@ -17,7 +17,7 @@ public class Deputy {
     private boolean isGrafter;
     private boolean isUnderNABU;
     private boolean isUnderProsecutor;
-    private boolean isHeadOfParty = false;
+    private boolean HeadOfParty = false;
 
     public Deputy() {
     }

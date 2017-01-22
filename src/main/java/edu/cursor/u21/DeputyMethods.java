@@ -36,9 +36,9 @@ public class DeputyMethods implements DeputyInterface {
             deputy.setUnderProsecutor(true);
             System.out.println("Deputy " + name + "is prosecuted under Bribery Act by GPU");
         } else {
-            for (Deputy dep : SupremeCouncil.listOfDeputies) {
-                if (dep.getParty() == currentDeputyPartyName) {
-                    dep.setBribe(bribe * partyHeadsPercent);
+            for (Deputy deputy1 : SupremeCouncil.listOfDeputies) {
+                if (deputy1.getParty() == currentDeputyPartyName && deputy1.getHeadOfParty()==true) {
+                    deputy1.setBribe(deputy1.getBribe() + (bribe * partyHeadsPercent));
                     System.out.println("Head of party got bribe. ");
                 } else throw new IllegalStateException("There is no head of Party. P.S. you go to jail)) ");
             }
@@ -124,4 +124,23 @@ public class DeputyMethods implements DeputyInterface {
         }
         return deputy;
     }
+
+
+    Deputy findHeadOfParty(HashSet<Deputy> deputies) {
+
+        return deputies.stream()
+                .findFirst(
+                        deputy1 -> deputy1.is== true)
+                .get();
+    }
+
+    void chooseHeadOfParty(Deputy deputy) {
+        deputy.setHeadOfParty(true);
+    }
+
+    void checkPartyIfThereIsHead(HashSet<Deputy> deputies) {
+        return (deputy) -> deputies.stream()
+                                .findFirst(deputy==true);
+    }
+
 }
