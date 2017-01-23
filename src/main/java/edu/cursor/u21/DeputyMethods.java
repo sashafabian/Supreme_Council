@@ -46,12 +46,12 @@ public class DeputyMethods implements DeputyInterface {
     }
 
     public void statisticsOfBribes(HashSet<Deputy> regions, HashSet<Deputy> motherland, HashSet<Deputy> radicals) {
-        Set<Deputy> stat;
+        Set<Deputy> stat = null;
         boolean a = true;
         int key;
         while (a)
             System.out.println("Enter number of party to print statistics:\n1-partyOfRegions\2-partyOfMotherLand\n3-partyOfRadicals");
-            key = Utils.scanInt();
+        key = Utils.scanInt();
         switch (key) {
             case 1:
                 stat = regions;
@@ -76,27 +76,60 @@ public class DeputyMethods implements DeputyInterface {
 
     public HashSet<Deputy> deleteDeputy(HashSet<Deputy> deputy) {
         System.out.println("List of deputy to delete, enter surname from this list:");
-        for (Deputy dep:deputy) {
-            if (dep.isUnderNABU()||dep.isUnderProsecutor())
+        for (Deputy dep : deputy) {
+            if (dep.isUnderNABU() || dep.isUnderProsecutor())
                 System.out.println(dep.getName());
         }
         String surname = Utils.scan.next();
         int i = 0;
-        for (Deputy dep:deputy) {
-            if (surname==dep.getName()) {
+        for (Deputy dep : deputy) {
+            if (surname == dep.getName()) {
                 deputy = voting(dep, deputy);
-                i=1;
+                i = 1;
                 break;
             }
         }
-        if (i==0) System.out.println("No matches, this time they were lucky");
+        if (i == 0) System.out.println("No matches, this time they were lucky");
         return deputy;
     }
 
-    public HashSet<Deputy> voting(Deputy dep, HashSet<Deputy> deputy){
+    public HashSet<Deputy> voting(Deputy dep, HashSet<Deputy> deputy) {
 
-     //Lytsushyn.Marian
+        //Lytsushyn.Marian
 
         return deputy;
+    }
+/*
+   get minimal depute`s bribes by parties
+  */
+   public void minimalStatisticsOfBribes(HashSet<Deputy> regions, HashSet<Deputy> motherland, HashSet<Deputy> radicals) {
+        Set<Deputy> stat = null;
+        boolean a = true;
+        int key;
+        while (a)
+            System.out.println("Enter number of party to print statistics:\n1-partyOfRegions\2-partyOfMotherLand\n3-partyOfRadicals");
+        key = Utils.scanInt();
+        switch (key) {
+            case 1:
+                stat = regions;
+                a = false;
+                break;
+            case 2:
+                stat = motherland;
+                a = false;
+                break;
+            case 3:
+                stat = radicals;
+                a = false;
+                break;
+            default:
+                System.out.println("Wrong choice, repeat:");
+                break;
+        }
+        for (Deputy deputat : stat) {
+            if (deputat.getBribe() >= 5000) {
+                System.out.println("Deputy " + deputat.getName() + " - " + deputat.getBribe() + " USD  ");
+            }
+        }
     }
 }
