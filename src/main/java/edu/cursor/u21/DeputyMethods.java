@@ -20,16 +20,19 @@ public class DeputyMethods implements DeputyInterface {
         double bribe = deputy.getBribe();
         String name = deputy.getName();
         double partyHeadsPercent = 0.3;
+        double allowableBribe = 5_000;
+        double bribeScopeForNabu = 50_000;
+        double bribeScopeForHpu = 100_000;
 
         if (bribe <= 0) {
             System.out.println("Don't shame your shoes! That's not a bribe!");
-        } else if (bribe > 0 && bribe <= 5_000) {
+        } else if (bribe > 0 && bribe <= allowableBribe) {
             System.out.println("Deputy " + name + " is the honest person in the world!");
-        } else if (bribe > 5_000 && bribe <= 50_000) {
+        } else if (bribe > allowableBribe && bribe <= bribeScopeForNabu) {
             deputy.setUnderNABU(true);
             deputy.setUnderProsecutor(false);
             System.out.println("Deputy " + name + "is prosecuted under Bribery Act by NABU");
-        } else if (bribe >= 50_000 && bribe <= 100_000) {
+        } else if (bribe >= bribeScopeForNabu && bribe <= bribeScopeForHpu) {
             deputy.setUnderNABU(false);
             deputy.setUnderProsecutor(true);
             System.out.println("Deputy " + name + "is prosecuted under Bribery Act by GPU");
@@ -136,10 +139,9 @@ public class DeputyMethods implements DeputyInterface {
     }
 
     void chooseHeadOfParty(Deputy deputy, HashSet<Deputy> party) {
-        if(!checkPartyIfThereIsLeader(party)) {
+        if (!checkPartyIfThereIsLeader(party)) {
             deputy.setHeadOfParty(true);
-        }
-        else System.out.println("Party already has a leader.");
+        } else System.out.println("Party already has a leader.");
     }
 
     private boolean checkPartyIfThereIsLeader(HashSet<Deputy> party) {
@@ -150,5 +152,4 @@ public class DeputyMethods implements DeputyInterface {
         }
         return false;
     }
-
 }
