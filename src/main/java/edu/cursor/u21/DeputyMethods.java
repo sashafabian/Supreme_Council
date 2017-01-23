@@ -1,7 +1,6 @@
 package edu.cursor.u21;
 
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by O.Kociuta on 20.01.2017.
@@ -17,10 +16,9 @@ public class DeputyMethods implements DeputyInterface {
         }
     }
 
-    void checkGraftersForProsecution(Deputy deputy) {
+    void checkGraftersForProsecution(Deputy deputy, HashSet<Deputy> party) {
         double bribe = deputy.getBribe();
         String name = deputy.getName();
-        String currentDeputyPartyName = deputy.getParty();
         double partyHeadsPercent = 0.3;
 
         if (bribe <= 0) {
@@ -36,12 +34,8 @@ public class DeputyMethods implements DeputyInterface {
             deputy.setUnderProsecutor(true);
             System.out.println("Deputy " + name + "is prosecuted under Bribery Act by GPU");
         } else {
-            for (Deputy dep : SupremeCouncil.listOfDeputies) {
-                if (dep.getParty() == currentDeputyPartyName) {
-                    dep.setBribe(bribe * partyHeadsPercent);
-                    System.out.println("Head of party got bribe. ");
-                } else throw new IllegalStateException("There is no head of Party. P.S. you go to jail)) ");
-            }
+            giveBribeToHeadOfParty(findHeadOfParty(party).getBribe() + (bribe * partyHeadsPercent), party);
+            System.out.println("Head of party got bribe. ");
         }
     }
 
@@ -125,4 +119,37 @@ public class DeputyMethods implements DeputyInterface {
         }
         return deputy;
     }
+
+    void giveBribeToHeadOfParty(double bribe, HashSet<Deputy> party) {
+        if (findHeadOfParty(party) == null) {
+            System.out.println("You can't give bribe to not existing person. Please, choose head of party first! ");
+        }
+        findHeadOfParty(party).setBribe(bribe);
+    }
+
+    public Deputy findHeadOfParty(HashSet<Deputy> party) {
+        for (Deputy deputy : party) {
+            if (deputy.isHeadOfParty()) {
+                return deputy;
+            } else throw new IllegalStateException("This party has no leader! Leadership is for losers!");
+        }
+        return null;
+    }
+
+    void chooseHeadOfParty(Deputy deputy, HashSet<Deputy> party) {
+        if(!checkPartyIfThereIsLeader(party)) {
+            deputy.setHeadOfParty(true);
+        }
+        else System.out.println("Party already has a leader.");
+    }
+
+    private boolean checkPartyIfThereIsLeader(HashSet<Deputy> party) {
+        for (Deputy deputy : party) {
+            if (!deputy.isHeadOfParty()) {
+                throw new IllegalStateException("This party has no leader! Leadership is for losers!");
+            } else return true;
+        }
+        return false;
+    }
+
 }
