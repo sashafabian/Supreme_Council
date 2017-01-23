@@ -127,7 +127,7 @@ public class DeputyMethods implements DeputyInterface {
                 break;
         }
         for (Deputy deputat : stat) {
-            if (deputat.getBribe() >= 5000) {
+            if (deputat.getBribe() < 50000) {
                 System.out.println("Deputy " + deputat.getName() + " - " + deputat.getBribe() + " USD  ");
             }
         }
