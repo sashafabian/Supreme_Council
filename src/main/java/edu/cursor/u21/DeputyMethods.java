@@ -99,7 +99,7 @@ public class DeputyMethods implements DeputyInterface {
         double twoThirds = 0.66;
         double half = 0.5;
         int golosuvanya = 0;
-        int amountDeputy;
+        int amountDeputy= 45;
 
         if (dep.isUnderNABU()) {
             golosuvanya = (int) (Math.random() * amountDeputy * percentageOftruthfulness);
